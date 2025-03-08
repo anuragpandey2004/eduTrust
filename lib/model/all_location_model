@@ -1,0 +1,38 @@
+// To parse this JSON data, do
+//
+//     final getAllLocation = getAllLocationFromJson(jsonString);
+
+import 'dart:convert';
+
+List<GetAllLocation> getAllLocationFromJson(String str) => List<GetAllLocation>.from(json.decode(str).map((x) => GetAllLocation.fromJson(x)));
+
+String getAllLocationToJson(List<GetAllLocation> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+class GetAllLocation {
+    String? country;
+    String? city;
+    int? locationId;
+    String? flagImageUrl;
+
+    GetAllLocation({
+        this.country,
+        this.city,
+        this.locationId,
+        this.flagImageUrl,
+    });
+
+    factory GetAllLocation.fromJson(Map<String, dynamic> json) => GetAllLocation(
+        country: json["country"],
+        city: json["city"],
+        locationId: json["locationId"],
+        flagImageUrl: json["flagImageUrl"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "country": country,
+        "city": city,
+        "locationId": locationId,
+        "flagImageUrl": flagImageUrl,
+    
+    };
+}
